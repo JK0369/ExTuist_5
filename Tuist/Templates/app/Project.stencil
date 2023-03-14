@@ -1,0 +1,23 @@
+import ProjectDescription
+
+let project = Project(
+    name: "{{ name }}",
+    targets: [
+        Target(
+            name: "{{ name }}",
+            platform: .iOS,
+            product: .staticFramework,
+            bundleId: "com.jake.{{ name }}",
+            infoPlist: .extendingDefault(with: [
+                "CFBundleShortVersionString": "1.0",
+                "CFBundleVersion": "1",
+                "UILaunchStoryboardName": "LaunchScreen"
+            ]),
+            sources: ["Sources/**"], // Sources/**누락 시 .swift 파일 수동으로 add files해야 추가됨
+            resources: ["Sources/**"], // Sources/**누락 시 LaunchScreen.storyboard 파일 수동으로 add files해야 추가됨
+            dependencies: [
+                {# .external(name: "Alamofire") #}
+            ]
+        )
+    ]
+)
